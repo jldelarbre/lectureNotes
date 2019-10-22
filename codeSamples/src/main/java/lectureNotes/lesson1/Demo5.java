@@ -2,7 +2,7 @@ package lectureNotes.lesson1;
 
 public class Demo5 {
 
-    // An immutable class
+    // An immutable class implementation sample
     static final class Foo {
         private final int a;
         private final int b;

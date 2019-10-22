@@ -2,6 +2,7 @@ package lectureNotes.lesson1;
 
 public class Demo7 {
 
+    // Builder samples
     static final class Foo {
         private final int a;
         private final int b;
