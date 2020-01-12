@@ -39,11 +39,11 @@ public class Farm1 {
         
         void sellHerd(LivestockTruck livestockTruck) {
             // ...
-            loadGoats(livestockTruck.getFreeLocations());
+            loadAnimals(livestockTruck.getFreeLocations());
             // ...
         }
         
-        void loadGoats(List<Animal> freeLocations) {
+        void loadAnimals(List<Animal> freeLocations) {
             for (Animal animal : herd) {
                 freeLocations.add(animal);
             }

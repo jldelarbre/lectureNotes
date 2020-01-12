@@ -69,5 +69,19 @@ public class WildcardBadUsage {
         // get2_1.accept(n); // Error
         Consumer<Double> get2_2 = otherClass.get2();
         get2_2.accept(d);
+        
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        
+        ThirdClass<Number> thirdClass = new ThirdClass<>();
+        ThirdClass<? extends Number> thirdClassExtends = thirdClass;
+        ThirdClass<? super Double> thirdClassSuper = thirdClass;
+        
+        // Impossible to fully use "doSomething" method with super or extends
+        // Number doSomething = thirdClassExtends.doSomething(n);
+        Object doSomething = thirdClassSuper.doSomething(d);
+        //OnlyPossible way:
+        Number doSomething2 = thirdClass.doSomething(n);
     }
 }

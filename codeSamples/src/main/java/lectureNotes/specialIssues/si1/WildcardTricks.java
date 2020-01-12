@@ -1,5 +1,6 @@
 package lectureNotes.specialIssues.si1;
 
+import java.util.Collection;
 import java.util.List;
 
 // Explain diff between List, List<?>, List<Object> demonstrate it with code
@@ -35,5 +36,10 @@ public class WildcardTricks {
     ////////////////////////////////////////////////////////////////////////////////////////////
 
     // Complex "JDK" sample: Collections
-    // public static <T extends Comparable<? super T>> T max(List<? extends T> list)
+    // public static <T extends Comparable<? super T>> T max(Collection<? extends T> coll)
+    //
+    // This is what you really have in JDK (extends Object avoid to break compatibility with
+    // pre Java 5 code):
+    //
+    // public static <T extends Object & Comparable<? super T>> T max(Collection<? extends T> coll)
 }
