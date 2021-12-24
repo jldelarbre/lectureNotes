@@ -1,0 +1,11 @@
+mapping BUY BuyOperation
+  7-18: customerName
+  20-26: orderId
+  28-33: paymentMean
+  35-41: amount
+
+mapping RETURN ReturnOperation
+  7-18: customerName
+  20-26: orderId
+  28-38: cause
+  40-47: action

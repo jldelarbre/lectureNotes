@@ -11,7 +11,8 @@ public class MainClass {
     }
     
     static void someProcessingWithFoo(Foo foo) {
+    	// Some useless processing:
         foo.doWork();
-        System.out.println(foo.getParam1() + foo.getParam2());
+        System.out.println(2*foo.getParam1() + foo.getParam2());
     }
 }

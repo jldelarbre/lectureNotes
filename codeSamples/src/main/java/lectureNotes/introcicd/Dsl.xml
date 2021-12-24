@@ -1,0 +1,14 @@
+<OperationProcessor>
+  <Mapping Code = "BUY" TargetClass = "BuyOperation">
+    <Field name = "customerName" start = "7" end = "18"/>
+    <Field name = "orderId" start = "20" end = "26"/>
+    <Field name = "paymentMean" start = "28" end = "33"/>
+    <Field name = "amount" start = "35" end = "41"/>
+  </Mapping>
+  <Mapping Code = "RETURN" TargetClass = "ReturnOperation">
+    <Field name = "customerName" start = "7" end = "18"/>
+    <Field name = "orderId" start = "20" end = "26"/>
+    <Field name = "cause" start = "28" end = "38"/>
+    <Field name = "action" start = "40" end = "47"/>
+  </Mapping>
+</OperationProcessor>

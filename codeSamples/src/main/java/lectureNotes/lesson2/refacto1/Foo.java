@@ -4,18 +4,19 @@ public class Foo {
 
     private int param1;
     private int param2;
-    private String paramString;
+    private String paramString; // = null
     
     public int doWork() {
-        // Never do an assignment on param1, param2 or paramString outside setters
         return param1 + param2;
     }
     
     public int doOtherWork() {
+    	// paramString may be uninitialized
         return param1 + paramString.length();
     }
     
     public int doThirdWork() {
+    	// You have to check the reference validity
         if (paramString != null) {
             return param1 + paramString.length();
         }

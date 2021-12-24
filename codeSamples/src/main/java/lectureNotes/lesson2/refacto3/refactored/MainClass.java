@@ -73,6 +73,7 @@ public class MainClass {
         // Here another kind of smell which warn you about bad non reusable code
         void computeAnotherBadImplementation() {
             for (ObjectToProcess objectToProcess : objectsToProcess) {
+            	// An "if comb" is often a smell
                 if (subProcessor instanceof FirstSubProcessor) {
                     FirstSubProcessor firstSubProcessor = (FirstSubProcessor) subProcessor;
                     firstSubProcessor.process(objectToProcess);
