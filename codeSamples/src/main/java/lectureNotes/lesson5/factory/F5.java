@@ -1,57 +1,67 @@
 package lectureNotes.lesson5.factory;
 
-import java.util.ArrayList;
-import java.util.List;
-
-// Wikipedia example for factory method
 public class F5 {
-
-    public abstract class Room {
-        abstract void connect(Room room);
-    }
-
-    public class MagicRoom extends Room {
-        public void connect(Room room) {}
-    }
-
-    public class OrdinaryRoom extends Room {
-        public void connect(Room room) {}
-    }
-
-    public abstract class MazeGame {
-         private final List<Room> rooms = new ArrayList<>();
-
-         public MazeGame() {
-              Room room1 = makeRoom();
-              Room room2 = makeRoom();
-              room1.connect(room2);
-              rooms.add(room1);
-              rooms.add(room2);
-         }
-
-         // Define an abstract method to let subclass define how to build room
-         //
-         // Roughly obsolete pattern, since it force to inheritance.
-         // Instead of using an abstract method, simply pass a factory as dependency
-         abstract protected Room makeRoom();
+	// compagny transprot people dans business layer
+	////////////////////////////////
+	// Business layer API package //
+	////////////////////////////////
+    
+    interface RailNetwork {
+        void transportPeople();
     }
     
-    ////////////////////////////////////////////////////////////////////////////////////////////////
+    interface RailwayCompagny {
+    	void peopleNeedTransportCallback();
+    }
+
+    ///////////////////////////////////////////
+    // Business layer implementation package //
+    ///////////////////////////////////////////
     
-    public class MagicMazeGame extends MazeGame {
-        @Override
-        protected Room makeRoom() {
-            return new MagicRoom(); 
-        }
-    }
+    static class RailNetworkImp implements RailNetwork {
 
-    public class OrdinaryMazeGame extends MazeGame {
-        @Override
-        protected Room makeRoom() {
-            return new OrdinaryRoom(); 
-        }
-    }
+        public RailNetworkImp() {}
 
-    MazeGame ordinaryGame = new OrdinaryMazeGame();
-    MazeGame magicGame = new MagicMazeGame();
+        @Override
+        public void transportPeople() { /* ... */ }
+    }
+    
+    static class RailwayCompagnyImpl implements RailwayCompagny {
+    	
+    	private final RailNetwork railNetwork;
+    	
+    	private RailwayCompagnyImpl(RailNetwork railNetwork) {
+    		this.railNetwork = railNetwork;
+    	}
+    	
+    	@Override
+    	public void peopleNeedTransportCallback() {
+    		// ...
+    		
+    		// Business layer uses RailNetwork abstraction but do not
+    		// implement it (received by injection)
+    		railNetwork.transportPeople();
+    		// ...
+    	}
+    }
+    
+    public static RailNetwork buildRailNetwork() {
+    	return new RailNetworkImp();
+    }
+    
+    //////////////////////
+    // Application main //
+    //////////////////////
+    
+    public static void main(String[] args) {
+    	
+    	// Part of the application responsible of application wiring
+    	// It can statically link to "buildRailNetwork" factory method
+    	// No business intelligence takes place here
+    	
+        RailNetwork railway = buildRailNetwork();
+        RailwayCompagny railwayCompagny = new RailwayCompagnyImpl(railway);
+        
+        // Link people need transport event to "peopleNeedTransportCallback"
+    }
 }

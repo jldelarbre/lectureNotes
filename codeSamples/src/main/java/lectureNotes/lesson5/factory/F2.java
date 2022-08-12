@@ -2,70 +2,72 @@ package lectureNotes.lesson5.factory;
 
 public class F2 {
 
-    // A complex object with a lot of fields
-    static class RailwayUsageReport {
-        
-        private final int numberOfMovement;
-        private final int timeInDaysSinceLastMaintenance;
-        private final int numberOfIncident;
-        // ...
-        
-        RailwayUsageReport(int numberOfMovement, int timeInDaysSinceLastMaintenance, int numberOfIncident) {
-            this.numberOfMovement = numberOfMovement;
-            this.timeInDaysSinceLastMaintenance = timeInDaysSinceLastMaintenance;
-            this.numberOfIncident = numberOfIncident;
-        }
+    ////////////////////////////////
+    // Business layer API package //
+    ////////////////////////////////
+	
+    interface RailNetwork {
+        void transportPeople();
+    }
 
-        public int getNumberOfMovement() {
-            return numberOfMovement;
+    ///////////////////////////////////////////
+    // Business layer implementation package //
+    ///////////////////////////////////////////
+    
+    static class RailNetworkImp implements RailNetwork {
+        
+        private static final double DEFAULT_CAPACITY = 100.0;
+        
+        @SuppressWarnings("unused")
+		private final double capacity;
+
+        // Constructor does not do work: only initializing fields
+        // Constructors shall never be public: private or package
+        private RailNetworkImp(double capacity) {
+            this.capacity = capacity;
         }
         
-        public int getTimeInDaysSinceLastMaintenance() {
-            return timeInDaysSinceLastMaintenance;
-        }
-        
-        public int getNumberOfIncident() {
-            return numberOfIncident;
-        }
+        @Override
+        public void transportPeople() { /* ... */ }
+    }
+
+    ///////////////////////////////////////////
+    // Business layer implementation package //
+    //              PUBLIC PART              //
+    ///////////////////////////////////////////
+    
+    // Simplest kind of factory: static factory method
+    //
+    // - Allow to restrict constructor access
+    // - Initialize data
+    // - Do not return a concrete type but an interface (allow to change later with another
+    //   implementation)
+    public static RailNetwork buildRailNetwork() {
+    	return new RailNetworkImp(RailNetworkImp.DEFAULT_CAPACITY);
     }
     
-    // A builder to build the complex object
-    static class RailwayUsageReportBuilder {
-        
-        private int numberOfMovement;
-        private int timeInDaysSinceLastMaintenance;
-        private int numberOfIncident;
-        
-        // Mandatory parameters to set should preferably be set at builder construction time.
-        // For too numerous parameters, setters allow a more expressive code
-        public RailwayUsageReportBuilder(int numberOfMovement) {
-            this.numberOfMovement = numberOfMovement;
-        }
-        
-        RailwayUsageReport build() {
-            return new RailwayUsageReport(numberOfMovement, timeInDaysSinceLastMaintenance, numberOfIncident);
-        }
-
-        // Optional parameters to set are set by setters
-        // For too numerous parameters, setters allow a more expressive code.
-        // Setters that return "this" allow to cascade them
-        public RailwayUsageReportBuilder setTimeInDaysSinceLastMaintenance(int timeInDaysSinceLastMaintenance) {
-            this.timeInDaysSinceLastMaintenance = timeInDaysSinceLastMaintenance;
-            return this;
-        }
-
-        public RailwayUsageReportBuilder setNumberOfIncident(int numberOfIncident) {
-            this.numberOfIncident = numberOfIncident;
-            return this;
-        }
+    // Allow many way of building instances (with same signature) impossible to do with
+    // constructors
+    //
+    public static RailNetwork buildRailNetworkWithCapacity(double capacity) {
+    	return new RailNetworkImp(capacity);
+    }
+    public static RailNetwork buildResilientRailNetworkWithCapacity(double resilientCapacity) {
+    	return new RailNetworkImp(2.0 * resilientCapacity);
     }
     
-    @SuppressWarnings("unused")
+    /////////////////
+    // Application //
+    /////////////////
+    
     public static void main(String[] args) {
-        // It should be cleaner to also define a static factory for the builder itself
-        RailwayUsageReport railwayUsageReport = new RailwayUsageReportBuilder(500)
-            .setTimeInDaysSinceLastMaintenance(20)
-            .setNumberOfIncident(1)
-            .build();
+        
+        // A static factory method is STATIC
+        //
+        // Linking against static things is one of the strongest coupling you can do.
+        // Factory and application main can do such since they aim to wire components
+        // and hence couple them together
+        RailNetwork railway = buildRailNetwork();
+        railway.transportPeople();
     }
 }

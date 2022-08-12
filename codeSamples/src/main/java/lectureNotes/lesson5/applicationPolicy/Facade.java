@@ -36,6 +36,7 @@ public class Facade {
     // - Applying discount policy
     // - Receive payment
     
+    // REQUIRE A WELL DEFINED BUSINESS MODEL
     interface SellsTerminal {
         
         Route chooseRoute(String departure, String arrival);
