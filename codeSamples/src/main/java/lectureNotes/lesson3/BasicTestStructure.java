@@ -51,13 +51,14 @@ public class BasicTestStructure {
     static class ComponentToTestTest {
         
         @Test
-        // Chicago (Detroit) style (state based)
+        // Chicago (Detroit) style (state based) - TDD
         void firstMethodTest() {
             // Setup (or given)
             // ----------------
             String input = "testValue";
             
-            // Fake dependency1
+            // Fake dependency1 - Use mockito to easily create a stub but generally unused in Detroit style
+            // Mockito interaction checking not used here in Chicago style
             Dependency1 fakeDependency1 = mock(Dependency1.class);
             doReturn("someResult").when(fakeDependency1).someMethod("computedValue_" + input);
             
@@ -75,7 +76,7 @@ public class BasicTestStructure {
         }
         
         @Test
-        // London style (interaction style)
+        // London style (interaction style) - TDD
         void secondMethodTest() {
             // Setup
             // -----
