@@ -2,7 +2,7 @@ package lectureNotes.lesson2.refacto4;
 
 public class MainClass {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
         MyProcessor myProcessor = new MyProcessor();
         
         myProcessor.compute();
@@ -24,7 +24,7 @@ public class MainClass {
         SubProcessor subProcessor = new SubProcessor();
         
         void compute() {
-        	subProcessor.process(objectToProcess);
+            subProcessor.process(objectToProcess);
         }
     }
 }

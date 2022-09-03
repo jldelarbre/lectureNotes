@@ -11,12 +11,12 @@ public class Foo {
     }
     
     public int doOtherWork() {
-    	// paramString may be uninitialized
+        // paramString may be uninitialized
         return param1 + paramString.length();
     }
     
     public int doThirdWork() {
-    	// You have to check the reference validity
+        // You have to check the reference validity
         if (paramString != null) {
             return param1 + paramString.length();
         }

@@ -42,9 +42,9 @@ public class Visitor9 {
         }
         
         private <S extends Shape> void launchSpecificVisitor(Shape shape, Class<S> shapeType) {
-        	
-        	// SECOND DISPATCH
-        	
+            
+            // SECOND DISPATCH
+            
             Optional<SpecificShapeVisitor<S>> specificShapeVisitor = getSpecificShapeVisitor(shapeType);
             if (specificShapeVisitor.isPresent()) {
                 S castShape = specificShapeVisitor.get().getType().cast(shape);
@@ -86,10 +86,10 @@ public class Visitor9 {
             // Default action
         }
 
-		@Override
-		public Class<Shape> getType() {
-			return Shape.class;
-		}
+        @Override
+        public Class<Shape> getType() {
+            return Shape.class;
+        }
     }
     
     ///////////////////////////////
@@ -97,31 +97,31 @@ public class Visitor9 {
     ///////////////////////////////
     
     static class ShapeToXmlSaver implements ShapeVisitor {
-    	private final Map<Class<? extends Shape>, SpecificShapeVisitor<? extends Shape>> shapeVisitorMap;
-    	
-		public ShapeToXmlSaver(Map<Class<? extends Shape>, SpecificShapeVisitor<? extends Shape>> shapeVisitorMap) {
-			this.shapeVisitorMap = shapeVisitorMap;
-		}
+        private final Map<Class<? extends Shape>, SpecificShapeVisitor<? extends Shape>> shapeVisitorMap;
+        
+        public ShapeToXmlSaver(Map<Class<? extends Shape>, SpecificShapeVisitor<? extends Shape>> shapeVisitorMap) {
+            this.shapeVisitorMap = shapeVisitorMap;
+        }
 
-		@Override
-		public Map<Class<? extends Shape>, SpecificShapeVisitor<? extends Shape>> getShapeVisitorMap() {
-			return shapeVisitorMap;
-		}
+        @Override
+        public Map<Class<? extends Shape>, SpecificShapeVisitor<? extends Shape>> getShapeVisitorMap() {
+            return shapeVisitorMap;
+        }
     }
     
     static class ShapeToXmlSaverBuilder {
-    	private Map<Class<? extends Shape>, SpecificShapeVisitor<? extends Shape>> shapeVisitorMap = new HashMap<>();
-    	
-    	static ShapeToXmlSaverBuilder aShapeToXmlSaver() { return new ShapeToXmlSaverBuilder(); }
+        private Map<Class<? extends Shape>, SpecificShapeVisitor<? extends Shape>> shapeVisitorMap = new HashMap<>();
+        
+        static ShapeToXmlSaverBuilder aShapeToXmlSaver() { return new ShapeToXmlSaverBuilder(); }
 
-    	public ShapeToXmlSaverBuilder with(SpecificShapeVisitor<? extends Shape> visitor) {
-    		shapeVisitorMap.put(visitor.getType(), visitor);
-			return this;
-    	}
-    	
-    	public ShapeToXmlSaver build() {
-    		return new ShapeToXmlSaver(Maps.newHashMap(shapeVisitorMap));
-    	}
+        public ShapeToXmlSaverBuilder with(SpecificShapeVisitor<? extends Shape> visitor) {
+            shapeVisitorMap.put(visitor.getType(), visitor);
+            return this;
+        }
+        
+        public ShapeToXmlSaver build() {
+            return new ShapeToXmlSaver(Maps.newHashMap(shapeVisitorMap));
+        }
     }
     
     //////////////////////////////////////////
@@ -129,27 +129,27 @@ public class Visitor9 {
     //////////////////////////////////////////
     
     static class SquareToXmlSaver implements SpecificShapeVisitor<Square> {
-		@Override
-		public void visit(Square shape) {
-			// ...
-		}
+        @Override
+        public void visit(Square shape) {
+            // ...
+        }
 
-		@Override
-		public Class<Square> getType() {
-			return Square.class;
-		}
+        @Override
+        public Class<Square> getType() {
+            return Square.class;
+        }
     }
     
     static class CircleToXmlSaver implements SpecificShapeVisitor<Circle> {
-		@Override
-		public void visit(Circle circle) {
-			// ...
-		}
+        @Override
+        public void visit(Circle circle) {
+            // ...
+        }
 
-		@Override
-		public Class<Circle> getType() {
-			return Circle.class;
-		}
+        @Override
+        public Class<Circle> getType() {
+            return Circle.class;
+        }
     }
 
     ////////////////////////////////
@@ -157,31 +157,31 @@ public class Visitor9 {
     ////////////////////////////////
     
     static class ShapeToJsonSaver implements ShapeVisitor {
-    	private final Map<Class<? extends Shape>, SpecificShapeVisitor<? extends Shape>> shapeVisitorMap;
-    	
-		public ShapeToJsonSaver(Map<Class<? extends Shape>, SpecificShapeVisitor<? extends Shape>> shapeVisitorMap) {
-			this.shapeVisitorMap = shapeVisitorMap;
-		}
+        private final Map<Class<? extends Shape>, SpecificShapeVisitor<? extends Shape>> shapeVisitorMap;
+        
+        public ShapeToJsonSaver(Map<Class<? extends Shape>, SpecificShapeVisitor<? extends Shape>> shapeVisitorMap) {
+            this.shapeVisitorMap = shapeVisitorMap;
+        }
 
-		@Override
-		public Map<Class<? extends Shape>, SpecificShapeVisitor<? extends Shape>> getShapeVisitorMap() {
-			return shapeVisitorMap;
-		}
+        @Override
+        public Map<Class<? extends Shape>, SpecificShapeVisitor<? extends Shape>> getShapeVisitorMap() {
+            return shapeVisitorMap;
+        }
     }
     
     static class ShapeToJsonSaverBuilder {
-    	private Map<Class<? extends Shape>, SpecificShapeVisitor<? extends Shape>> shapeVisitorMap = new HashMap<>();
-    	
-    	static ShapeToJsonSaverBuilder aShapeToJsonSaver() { return new ShapeToJsonSaverBuilder(); }
+        private Map<Class<? extends Shape>, SpecificShapeVisitor<? extends Shape>> shapeVisitorMap = new HashMap<>();
+        
+        static ShapeToJsonSaverBuilder aShapeToJsonSaver() { return new ShapeToJsonSaverBuilder(); }
 
-    	public ShapeToJsonSaverBuilder with(SpecificShapeVisitor<? extends Shape> visitor) {
-    		shapeVisitorMap.put(visitor.getType(), visitor);
-			return this;
-    	}
-    	
-    	public ShapeToJsonSaver build() {
-    		return new ShapeToJsonSaver(Maps.newHashMap(shapeVisitorMap));
-    	}
+        public ShapeToJsonSaverBuilder with(SpecificShapeVisitor<? extends Shape> visitor) {
+            shapeVisitorMap.put(visitor.getType(), visitor);
+            return this;
+        }
+        
+        public ShapeToJsonSaver build() {
+            return new ShapeToJsonSaver(Maps.newHashMap(shapeVisitorMap));
+        }
     }
     
     //////////////////////////////////////////
@@ -189,15 +189,15 @@ public class Visitor9 {
     //////////////////////////////////////////
 
     static class SquareToJsonSaver implements SpecificShapeVisitor<Square> {
-		@Override
-		public void visit(Square shape) {
-			// ...
-		}
+        @Override
+        public void visit(Square shape) {
+            // ...
+        }
 
-		@Override
-		public Class<Square> getType() {
-			return Square.class;
-		}
+        @Override
+        public Class<Square> getType() {
+            return Square.class;
+        }
     }
     
     ////////////////////////
@@ -205,35 +205,35 @@ public class Visitor9 {
     ////////////////////////
     
     public static void main(String[] args) {
-    	List<Shape> shapes = new ArrayList<>();
-    	
-    	// Application wiring, we know we are using Square and Circle
-    	shapes.add(new Square()); // Quick and dirty: direct use of constructor
-    	shapes.add(new Circle()); // same
-    	
-    	List<ShapeVisitor>shapeVisitors = new ArrayList<>();
+        List<Shape> shapes = new ArrayList<>();
+        
+        // Application wiring, we know we are using Square and Circle
+        shapes.add(new Square()); // Quick and dirty: direct use of constructor
+        shapes.add(new Circle()); // same
+        
+        List<ShapeVisitor>shapeVisitors = new ArrayList<>();
 
-    	// We add all the required visitors for the shapes we are using
-    	SquareToXmlSaver squareToXmlSaver = new SquareToXmlSaver();
-    	CircleToXmlSaver circleToXmlSaver = new CircleToXmlSaver();
-    	ShapeToXmlSaver shapeToXmlSaver = aShapeToXmlSaver().with(squareToXmlSaver).with(circleToXmlSaver).build();
-    	
-    	shapeVisitors.add(shapeToXmlSaver);
-    	
-    	// CircleToJsonSaver does not exist but it is a design application
-    	SquareToJsonSaver squareToJsonSaver = new SquareToJsonSaver();
-    	ShapeToJsonSaver shapeToJsonSaver = aShapeToJsonSaver().with(squareToJsonSaver).build();
-    	
-    	shapeVisitors.add(shapeToJsonSaver);
-    	
-    	useVisitor(shapes, shapeVisitors);
+        // We add all the required visitors for the shapes we are using
+        SquareToXmlSaver squareToXmlSaver = new SquareToXmlSaver();
+        CircleToXmlSaver circleToXmlSaver = new CircleToXmlSaver();
+        ShapeToXmlSaver shapeToXmlSaver = aShapeToXmlSaver().with(squareToXmlSaver).with(circleToXmlSaver).build();
+        
+        shapeVisitors.add(shapeToXmlSaver);
+        
+        // CircleToJsonSaver does not exist but it is a design application
+        SquareToJsonSaver squareToJsonSaver = new SquareToJsonSaver();
+        ShapeToJsonSaver shapeToJsonSaver = aShapeToJsonSaver().with(squareToJsonSaver).build();
+        
+        shapeVisitors.add(shapeToJsonSaver);
+        
+        useVisitor(shapes, shapeVisitors);
     }
     
     static void useVisitor(List<Shape> shapes, List<ShapeVisitor>shapeVisitors) {
         for (Shape shape : shapes) {
-        	for (ShapeVisitor shapeVisitor : shapeVisitors) {
-        		shape.accept(shapeVisitor); // FIRST DISPATCH
-        	}
+            for (ShapeVisitor shapeVisitor : shapeVisitors) {
+                shape.accept(shapeVisitor); // FIRST DISPATCH
+            }
         }
     }
 

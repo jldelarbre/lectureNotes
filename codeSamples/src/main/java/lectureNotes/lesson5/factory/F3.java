@@ -2,9 +2,9 @@ package lectureNotes.lesson5.factory;
 
 public class F3 {
 
-	////////////////////////////////
-	// Business layer API package //
-	////////////////////////////////
+    ////////////////////////////////
+    // Business layer API package //
+    ////////////////////////////////
     
     interface RailNetwork {
         void transportPeople();
@@ -20,7 +20,7 @@ public class F3 {
     
     static class RailNetworkImp implements RailNetwork {
 
-    	// A dependency to inject
+        // A dependency to inject
         private final RailwayMaintenanceService railwayMaintenanceService;
         
         // Constructor does not do work: only initializing fields
@@ -48,7 +48,7 @@ public class F3 {
     // Optional static factory method, not necessary if "RailwayMaintenanceService" only built
     // by "buildRailNetwork" factory method
     static RailwayMaintenanceService buildRailwayMaintenanceService() {
-    	return new RailwayMaintenanceServiceImp();
+        return new RailwayMaintenanceServiceImp();
     }
     
     // FACTORIES
@@ -81,9 +81,9 @@ public class F3 {
     
     public static void main(String[] args) {
         
-    	// We are agnostic of RailNetwork dependencies
-    	// The usage of a factory allows to ignore changes of implementation details
-    	// like collaborators list but the application remains testable
+        // We are agnostic of RailNetwork dependencies
+        // The usage of a factory allows to ignore changes of implementation details
+        // like collaborators list but the application remains testable
         RailNetwork railway = buildRailNetwork();
         railway.transportPeople();
     }

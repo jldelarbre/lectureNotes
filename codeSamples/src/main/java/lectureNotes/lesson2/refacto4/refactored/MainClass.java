@@ -2,9 +2,9 @@ package lectureNotes.lesson2.refacto4.refactored;
 
 public class MainClass {
 
-	public static void main(String[] args) {
-		MyProcessorFactory myProcessorFactory = new MyProcessorFactory();
-		
+    public static void main(String[] args) {
+        MyProcessorFactory myProcessorFactory = new MyProcessorFactory();
+        
         MyProcessor myProcessor = myProcessorFactory.build();
         
         myProcessor.compute();
@@ -19,7 +19,7 @@ public class MainClass {
     
     static class SubProcessor implements ISubProcessor {
 
-    	@Override
+        @Override
         public void process(ObjectToProcess objectToProcess) {
             // ...
         }
@@ -31,11 +31,11 @@ public class MainClass {
         private final ISubProcessor subProcessor;
         
         public MyProcessor(ISubProcessor subProcessor) {
-        	this.subProcessor = subProcessor;
-		}
+            this.subProcessor = subProcessor;
+        }
         
         void compute() {
-        	subProcessor.process(objectToProcess);
+            subProcessor.process(objectToProcess);
         }
     }
     

@@ -25,12 +25,12 @@ public class Foo {
     }
     
     public int doOtherWork() {
-    	// With optional you are forced to clearly assume that paramString is initialized
+        // With optional you are forced to clearly assume that paramString is initialized
         return param1 + paramString.get().length();
     }
     
     public int doThirdWork() {
-    	// With optional reference validity could not be forgotten
+        // With optional reference validity could not be forgotten
         if (paramString.isPresent()) {
             return param1 + paramString.get().length();
         }

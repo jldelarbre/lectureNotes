@@ -2,9 +2,9 @@ package lectureNotes.lesson5.factory;
 
 public class F4 {
 
-	////////////////////////////////
-	// Business layer API package //
-	////////////////////////////////
+    ////////////////////////////////
+    // Business layer API package //
+    ////////////////////////////////
     
     interface RailNetwork {
         void transportPeople();
@@ -23,11 +23,11 @@ public class F4 {
     }
     
     static class DieselRailNetworkImp implements RailNetwork {
-    	
-    	public DieselRailNetworkImp() {}
-    	
-    	@Override
-    	public void transportPeople() { /* ... */ }
+        
+        public DieselRailNetworkImp() {}
+        
+        @Override
+        public void transportPeople() { /* ... */ }
     }
     
     // Classic factory: Select implementation to return
@@ -36,16 +36,16 @@ public class F4 {
     // more complex case
     // ------------------------------------------------
     static class RailNetworkFactory {
-    	
-    	public RailNetwork build(String type) {
-    		switch (type) {
-    		case "ELECTRIC":
-    			return new ElectricRailNetworkImp();
-    		case "DIESEL":
-    			return new DieselRailNetworkImp();
-    		}
-    		throw new RuntimeException("Unknown type");
-    	}
+        
+        public RailNetwork build(String type) {
+            switch (type) {
+            case "ELECTRIC":
+                return new ElectricRailNetworkImp();
+            case "DIESEL":
+                return new DieselRailNetworkImp();
+            }
+            throw new RuntimeException("Unknown type");
+        }
     }
     
     //////////////////////
@@ -53,7 +53,7 @@ public class F4 {
     //////////////////////
     
     public static void main(String[] args) {
-    	RailNetworkFactory railNetworkFactory = new RailNetworkFactory();
+        RailNetworkFactory railNetworkFactory = new RailNetworkFactory();
         
         RailNetwork railway = railNetworkFactory.build("ELECTRIC");
         railway.transportPeople();

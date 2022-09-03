@@ -35,15 +35,15 @@ public class Singleton2 {
     // - Tests are not independent !
     // - Unmockable dependency !
     public static class SingletonTest {
-    	
-    	private SingletonUser singletonUser = new SingletonUser();
         
-    	@Test
+        private SingletonUser singletonUser = new SingletonUser();
+        
+        @Test
         public void test1() {
             singletonUser.someMethod1();
         }
         
-    	@Test
+        @Test
         public void test2() {
             singletonUser.someMethod2();
         }

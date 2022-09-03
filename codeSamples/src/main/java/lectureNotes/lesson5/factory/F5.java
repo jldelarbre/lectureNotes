@@ -1,17 +1,17 @@
 package lectureNotes.lesson5.factory;
 
 public class F5 {
-	// compagny transprot people dans business layer
-	////////////////////////////////
-	// Business layer API package //
-	////////////////////////////////
+    // compagny transprot people dans business layer
+    ////////////////////////////////
+    // Business layer API package //
+    ////////////////////////////////
     
     interface RailNetwork {
         void transportPeople();
     }
     
     interface RailwayCompagny {
-    	void peopleNeedTransportCallback();
+        void peopleNeedTransportCallback();
     }
 
     ///////////////////////////////////////////
@@ -27,26 +27,26 @@ public class F5 {
     }
     
     static class RailwayCompagnyImpl implements RailwayCompagny {
-    	
-    	private final RailNetwork railNetwork;
-    	
-    	private RailwayCompagnyImpl(RailNetwork railNetwork) {
-    		this.railNetwork = railNetwork;
-    	}
-    	
-    	@Override
-    	public void peopleNeedTransportCallback() {
-    		// ...
-    		
-    		// Business layer uses RailNetwork abstraction but do not
-    		// implement it (received by injection)
-    		railNetwork.transportPeople();
-    		// ...
-    	}
+        
+        private final RailNetwork railNetwork;
+        
+        private RailwayCompagnyImpl(RailNetwork railNetwork) {
+            this.railNetwork = railNetwork;
+        }
+        
+        @Override
+        public void peopleNeedTransportCallback() {
+            // ...
+            
+            // Business layer uses RailNetwork abstraction but do not
+            // implement it (received by injection)
+            railNetwork.transportPeople();
+            // ...
+        }
     }
     
     public static RailNetwork buildRailNetwork() {
-    	return new RailNetworkImp();
+        return new RailNetworkImp();
     }
     
     //////////////////////
@@ -54,11 +54,11 @@ public class F5 {
     //////////////////////
     
     public static void main(String[] args) {
-    	
-    	// Part of the application responsible of application wiring
-    	// It can statically link to "buildRailNetwork" factory method
-    	// No business intelligence takes place here
-    	
+        
+        // Part of the application responsible of application wiring
+        // It can statically link to "buildRailNetwork" factory method
+        // No business intelligence takes place here
+        
         RailNetwork railway = buildRailNetwork();
         RailwayCompagny railwayCompagny = new RailwayCompagnyImpl(railway);
         

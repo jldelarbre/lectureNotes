@@ -26,7 +26,7 @@ public class GuiceInjection2 {
     
     static class RailNetworkImp implements RailNetwork {
 
-    	@Inject
+        @Inject
         private RailwayMaintenanceService railwayMaintenanceService;
         
         @Override
