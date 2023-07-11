@@ -1,0 +1,7 @@
+Identité par valeurs... par references...
+
+Importances des interfaces => permet d'avoir un code plus maléable (plus souple à faire évoluer)
+Séparation implémentation et utilisation par l'interface
+
+C'est comme la ceinture de sécurité, on ne sait jamais quand on va en avoir besoin mais ça ne coute pas chère à mettre en place.
+Si sur un trajet, on a pas eu d'accident ça ne veut pas dire qu'on a eu tord de la mettre.
